@@ -15,8 +15,23 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <access origin="file:///*" />
+    <allow-navigation href="file:///*" />
+
     <platform name="android">
         <allow-intent href="market:*" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <preference name="AndroidXEnabled" value="true" />
+        <preference name="android-minSdkVersion" value="26" />
+        <preference name="android-targetSdkVersion" value="30" />
+        <preference name="AndroidPersistentFileLocation" value="Internal" />
+        <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+
+        <icon background="res/android/mipmap-mdpi/ic_launcher_adaptive_back.png" density="mdpi" foreground="res/android/mipmap-mdpi/ic_launcher_adaptive_fore.png" src="res/android/mipmap-mdpi/ic_launcher.png" />
+        <icon background="res/android/mipmap-hdpi/ic_launcher_adaptive_back.png" density="hdpi" foreground="res/android/mipmap-hdpi/ic_launcher_adaptive_fore.png" src="res/android/mipmap-hdpi/ic_launcher.png" />
+        <icon background="res/android/mipmap-xhdpi/ic_launcher_adaptive_back.png" density="xhdpi" foreground="res/android/mipmap-xhdpi/ic_launcher_adaptive_fore.png" src="res/android/mipmap-xhdpi/ic_launcher.png" />
+        <icon background="res/android/mipmap-xxhdpi/ic_launcher_adaptive_back.png" density="xxhdpi" foreground="res/android/mipmap-xxhdpi/ic_launcher_adaptive_fore.png" src="res/android/mipmap-xxhdpi/ic_launcher.png" />
+        <icon background="res/android/mipmap-xxxhdpi/ic_launcher_adaptive_back.png" density="xxxhdpi" foreground="res/android/mipmap-xxxhdpi/ic_launcher_adaptive_fore.png" src="res/android/mipmap-xxxhdpi/ic_launcher.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

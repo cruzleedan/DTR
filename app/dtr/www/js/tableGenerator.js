@@ -1,4 +1,4 @@
-
+import { saveFile } from "./fileHelper.js";
 const exportTableToXlsx = (tableEl, filename = 'dtr') => {
     const wb = XLSX.utils.table_to_book(tableEl, { sheet: "DTR" });
     wb.Props = {
@@ -18,7 +18,8 @@ const exportTableToXlsx = (tableEl, filename = 'dtr') => {
         }
         return buf;
     }
-    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), `${filename}.xlsx`);
+    const fullFilename = filename.replace(/\//g, '-');
+    saveFile(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), `${filename}.xlsx`);
 };
 
 const onCellKedown = (e, cell) => {
