@@ -21,6 +21,7 @@
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 
 import { initializeApp } from "./main.js";
+import { X } from "./globalVars";
 
 document.addEventListener('deviceready', onDeviceReady, false);
 
