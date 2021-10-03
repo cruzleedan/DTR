@@ -1,6 +1,7 @@
 import { createTable } from "./tableGenerator.js";
 import { getDateStringFromDatetime, getTimeFromDatetime, getDatesBetweenDates, getDayOfTheWeek, isDateInstance, isNotDateInstance } from "./utils.js";
-import { global_wb, X } from "./globalVars";
+import { global_wb, X, setGlobalVar } from "./globalVars";
+
 var XW = {
 	/* worker message */
 	msg: 'xlsx',
@@ -192,7 +193,8 @@ export const process_wb = (function() {
 	};
 
 	return function process_wb(wb) {
-		global_wb = wb;
+        setGlobalVar('global_wb', wb);
+		// global_wb = wb;
 		var output = "";
 
         HTMLOUT.innerHTML = "";
@@ -276,4 +278,4 @@ export const readFile = (() => {
             reader.readAsArrayBuffer(file);
         }
     };    
-})();
+})(X);

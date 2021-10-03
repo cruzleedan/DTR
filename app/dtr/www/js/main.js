@@ -1,4 +1,5 @@
 import { readFile, process_wb } from "./fileReader.js";
+import { global_wb } from "./globalVars";
 
 const onChangeUploadFile = (e) => {
     readFile(e.target.files);
