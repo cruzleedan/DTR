@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=500, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script>
+        var global_wb;
+        var X;
+    </script>
+    <title>DTR</title>
+</head>
+<body>
+    <fieldset class="collapsed">
+        <legend>
+            <span class="fieldset-toggle-btn"></span>
+            Advanced Options
+        </legend>
+        <div>Use Web Workers: (when available) <input type="checkbox" name="useworker" checked disabled></div>
+        <div>Use readAsBinaryString: (when available) <input type="checkbox" name="userabs" checked disabled></div>
+        <div>
+            Output Format:
+            <select name="format">
+                <option value="table" selected> TABLE</option>
+                <option value="csv"> CSV</option>
+                <option value="json"> JSON</option>
+                <option value="form"> FORMULAE</option>
+                <option value="html"> HTML</option>
+            </select>
+        </div>
+    </fieldset>
+    <div id="drop-area">
+        <button class="upload-file-btn">Upload Excel File</button>
+        <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="upload-file-input"/>
+    </div>
+    <div>
+        <pre id="out"></pre>
+    </div>
+    <div>
+        <div id="htmlout"></div>
+    </div>
+    <script src="packages/moment.min.js"></script>
+    <script src="packages/xlsx.full.min.js"></script>
+    <script src="packages/FileSaver.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

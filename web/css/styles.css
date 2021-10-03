@@ -1,0 +1,122 @@
+@font-face {
+    font-family: "opensans";
+    src: url("./fonts/Open_Sans/OpenSans-Light.ttf") format("woff");
+}
+
+html {
+    font-family: "opensans";
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    width: 10em;
+    height: 3em;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+select {
+    height: 3em;
+}
+
+.upload-file-input {
+    display: none;
+}
+
+.editable-table td:not(.no-border) {
+    border: 1px solid black;
+}
+
+.add-row-btn,
+.add-col-btn {
+    border: 1px solid black;
+    border-radius: 25px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.1;
+    cursor: pointer;
+}
+
+.add-row-btn::before,
+.add-col-btn::before {
+    content: "+";
+}
+
+.add-row-btn:hover,
+.add-col-btn:hover {
+    opacity: 1;
+}
+
+.add-row-btn {
+    position: absolute;
+    left: -16px;
+    bottom: -12px;
+}
+
+.relative-pos {
+    position: relative;
+}
+
+.download-btn {
+    margin-bottom: 10px;
+}
+
+.editable-table {
+    margin: 0 10px;
+}
+
+.fieldset-toggle-btn {
+    cursor: pointer;
+}
+
+
+fieldset {
+    display: inline;
+}
+
+fieldset.collapsed {
+    height: 0px;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+fieldset:not(.collapsed) .fieldset-toggle-btn::before {
+    content: '[−]'
+}
+
+fieldset.collapsed .fieldset-toggle-btn::before {
+    content: '[＋]'
+}
+
+#drop-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #ccc;
+    border-radius: 20px;
+    width: 480px;
+    font-family: sans-serif;
+    padding: 20px;
+    margin-top: 50px;
+    min-height: 100px;
+}
+
+#drop-area.highlight {
+    border-color: purple;
+}
+
+#htmlout:has(*) {
+    border-top: 1px solid #ccc;
+    margin: 25px 0;
+    padding: 20px 10px;
+}

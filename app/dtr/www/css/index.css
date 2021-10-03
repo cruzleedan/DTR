@@ -1,0 +1,241 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+@font-face {
+    font-family: "opensans";
+    src: url("./fonts/Open_Sans/OpenSans-Light.ttf") format("woff");
+}
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E4E4E4;
+    background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);
+    font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    font-size:12px;
+    height:100vh;
+    margin:0px;
+    padding:0px;
+    /* Padding to avoid the "unsafe" areas behind notches in the screen */
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    text-transform:uppercase;
+    width:100%;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+#deviceready.ready .event.listening { display: none; }
+#deviceready.ready .event.received { display: block; }
+
+@media screen and (prefers-color-scheme: dark) {
+    body {
+        background-image:linear-gradient(to bottom, #585858 0%, #1B1B1B 51%);
+    }
+}
+
+.loading-mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #4b9cdb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+.loading-mask.hidden {
+    z-index: -1;
+}
+
+.line {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+.loading-mask .line:nth-last-child(1) {
+    animation: loadingC 0.6s 0.1s linear infinite;
+}
+.loading-mask .line:nth-last-child(2) {
+    animation: loadingC 0.6s 0.2s linear infinite;
+}
+.loading-mask .line:nth-last-child(3) {
+    animation: loadingC 0.6s 0.3s linear infinite;
+}
+
+@keyframes loadingC {
+    from {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(0, 15px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+button {
+    width: 10em;
+    height: 3em;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #4b9cdb;
+}
+
+select {
+    height: 3em;
+}
+
+.upload-file-input {
+    display: none;
+}
+
+.editable-table td:not(.no-border) {
+    border: 1px solid black;
+}
+
+.add-row-btn,
+.add-col-btn {
+    border: 1px solid black;
+    border-radius: 25px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.1;
+    cursor: pointer;
+}
+
+.add-row-btn::before,
+.add-col-btn::before {
+    content: "+";
+}
+
+.add-row-btn:hover,
+.add-col-btn:hover {
+    opacity: 1;
+}
+
+.add-row-btn {
+    position: absolute;
+    left: -16px;
+    bottom: -12px;
+}
+
+.relative-pos {
+    position: relative;
+}
+
+.download-btn {
+    margin-bottom: 10px;
+}
+
+.editable-table {
+    margin: 0 10px;
+}
+
+.fieldset-toggle-btn {
+    cursor: pointer;
+}
+
+
+fieldset {
+    display: inline;
+}
+
+fieldset.collapsed {
+    height: 1em;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+fieldset:not(.collapsed) .fieldset-toggle-btn::before {
+    content: '[−]'
+}
+
+fieldset.collapsed .fieldset-toggle-btn::before {
+    content: '[＋]'
+}
+
+#drop-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #ccc;
+    border-radius: 20px;
+    width: 100%;
+    font-family: sans-serif;
+    margin-top: 50px;
+    min-height: 15em;
+}
+
+#drop-area.highlight {
+    border-color: purple;
+}
+
+#htmlout:has(*) {
+    border-top: 1px solid #ccc;
+    margin: 25px 0;
+    padding: 20px 10px;
+}
