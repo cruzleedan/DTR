@@ -40,13 +40,16 @@
     </head>
     <body>
         <div class="app">
-            <h1>DTR</h1>
+            <header class="main-header">
+                <h1 id="app-title">DTR</h1>
+                <nav>
+                    <div id="advance-settings-btn" class="icon-btn">
+                        <img src="./img/gear.png" alt="Settings" />
+                    </div>
+                </nav>
+            </header>
             <div id="deviceready">
-                <fieldset class="collapsed">
-                    <legend>
-                        <span class="fieldset-toggle-btn"></span>
-                        Advanced Options
-                    </legend>
+                <div id="advance-settings" class="collapsed">
                     <div>Use Web Workers: (when available) <input type="checkbox" name="useworker" checked disabled></div>
                     <div>Use readAsBinaryString: (when available) <input type="checkbox" name="userabs" checked disabled></div>
                     <div>
@@ -59,7 +62,8 @@
                             <option value="html"> HTML</option>
                         </select>
                     </div>
-                </fieldset>
+                </div>
+               
                 <div id="drop-area">
                     <button class="upload-file-btn">Upload Excel File</button>
                     <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="upload-file-input"/>

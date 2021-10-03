@@ -17,13 +17,13 @@ const onChangeFormat = window.setfmt = function setfmt() {
     }
 };
 
-const onToggleFieldset = (btn) => {
-    const fieldset = btn.closest('fieldset');
-    const isCollapsed = fieldset.classList.contains("collapsed");
+const onToggleSettings = () => {
+    const settings = document.querySelector('#advance-settings');
+    const isCollapsed = settings.classList.contains("collapsed");
     if (isCollapsed) {
-        fieldset.classList.remove("collapsed");
+        settings.classList.remove("collapsed");
     } else {
-        fieldset.classList.add("collapsed");
+        settings.classList.add("collapsed");
     }
 };
 
@@ -67,11 +67,11 @@ const setupDragAndDrop = () => {
 export const initializeApp = () => {
     const uploadBtn = document.querySelector('.upload-file-btn');
     const outputFormat = document.querySelector('select[name=format]');
-    const fieldsetToggleBtn = document.querySelector('.fieldset-toggle-btn');
+    const settingsBtn = document.querySelector('#advance-settings-btn');
 
     uploadBtn.addEventListener('click', onClickUploadXlsFile);
     outputFormat.addEventListener('change', onChangeFormat);
-    fieldsetToggleBtn.addEventListener('click', () => onToggleFieldset(fieldsetToggleBtn));
+    settingsBtn.addEventListener('click', onToggleSettings);
     
     setupDragAndDrop();
 };
