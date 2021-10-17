@@ -282,3 +282,7 @@ footer {
     text-align: center;
     margin: 1.5em;
 }
+
+.mdl-dialog__content {
+    color: inherit;
+}

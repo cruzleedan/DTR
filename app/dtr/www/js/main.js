@@ -59,22 +59,41 @@ const setupDragAndDrop = () => {
     }
 };
 
-const onTapSave = (btn) => {
+const onTapSave = async (btn) => {
     if (btn.classList.contains("disabled")) {
         return;
     }
     const outputEl = document.querySelector("#htmlout");
     if (outputEl) {
-        const tableEl = outputEl.querySelector("table");
-        const titleEl = outputEl.querySelector(".time-period");
-        const title = `${titleEl.dataset.minDate}-${titleEl.dataset.maxDate}`.replace(/\//g, '');
-        exportTableToXlsx(tableEl, title);
+        try {
+            const tableEl = outputEl.querySelector("table");
+            const titleEl = outputEl.querySelector(".time-period");
+            const title = `${titleEl.dataset.minDate}-${titleEl.dataset.maxDate}`.replace(/\//g, '');
+            
+            await exportTableToXlsx(tableEl, title);
+            const snackbar = document.querySelector("#msg-snackbar");
+            const data = {
+                message: 'Success!',
+                timeout: 2000,
+                actionHandler: () => {
+
+                },
+                actionText: 'Ok'
+            };
+            snackbar.MaterialSnackbar.showSnackbar(data);
+        } catch (error) {
+            const dialog = document.querySelector("dialog[data-id='msg']");
+            dialog.querySelector(".mdl-dialog__title").innerText = "Oops!";
+            dialog.querySelector(".mdl-dialog__content p").innerText = error;
+            dialog.querySelector(".close").onclick = () => {
+                dialog.close();
+            };
+            dialog.showModal();
+        }
     }
 };
 
 const setupSettingsDialog = () => {
-    const settingsBtn = document.querySelector('#advance-settings-btn');
-    
     const dialog = document.querySelector('dialog[data-id="advance-settings"]');
     const showDialogButton = document.querySelector('#advance-settings-btn');
     if (!dialog.showModal) {
@@ -93,8 +112,8 @@ export const initializeApp = () => {
     const outputFormat = document.querySelector('select[name=format]');
     const saveBtn = document.querySelector("#save-btn");
 
-    uploadBtn.addEventListener('click', onClickUploadXlsFile);
-    outputFormat.addEventListener('change', onChangeFormat);
+    uploadBtn.addEventListener('click', () => onClickUploadXlsFile(uploadBtn));
+    outputFormat.addEventListener('change', () => onChangeFormat(outputFormat));
     saveBtn.addEventListener('click', () => onTapSave(saveBtn));
     saveBtn.classList.add('disabled');
     

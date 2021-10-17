@@ -18,9 +18,14 @@
     <access origin="file:///*" />
     <allow-navigation href="file:///*" />
 
+    <engine name="android" spec="9.0.0" />
     <platform name="android">
         <allow-intent href="market:*" />
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+            <application android:requestLegacyExternalStorage="true" />
+        </edit-config>
         <preference name="AndroidXEnabled" value="true" />
         <preference name="android-minSdkVersion" value="26" />
         <preference name="android-targetSdkVersion" value="30" />

@@ -19,7 +19,7 @@ export const exportTableToXlsx = (tableEl, filename = 'dtr') => {
         return buf;
     }
     const fullFilename = filename.replace(/\//g, '-');
-    saveFile(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), `${filename}.xlsx`);
+    return saveFile(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), `${filename}.xlsx`);
 };
 
 const onCellKedown = (e, cell) => {
