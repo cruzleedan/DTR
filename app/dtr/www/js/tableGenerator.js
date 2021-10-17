@@ -1,5 +1,5 @@
 import { saveFile } from "./fileHelper.js";
-const exportTableToXlsx = (tableEl, filename = 'dtr') => {
+export const exportTableToXlsx = (tableEl, filename = 'dtr') => {
     const wb = XLSX.utils.table_to_book(tableEl, { sheet: "DTR" });
     wb.Props = {
         Title: "DTR",
@@ -77,7 +77,7 @@ const createAddRow = (trEl) => {
     return addRowBtn;
 };
 
-export const createTable = (data, title) => {
+export const createTable = (data, {minDate, maxDate}) => {
     const tableEl = document.createElement("table");
     const tbodyEl = document.createElement("tbody");
     tableEl.appendChild(tbodyEl);
@@ -100,12 +100,15 @@ export const createTable = (data, title) => {
     }
 
     const divContainer = document.createElement("div");
-    const downloadBtn = document.createElement("button");
-    downloadBtn.innerText = "Download";
-    downloadBtn.classList.add("download-btn");
-    divContainer.appendChild(downloadBtn);
+    const titleEl = document.createElement("div");
+    const saveBtn = document.querySelector("#save-btn");
+    titleEl.classList.add("time-period");
+    titleEl.innerText = `${minDate} - ${maxDate}`;
+    titleEl.dataset.minDate = minDate;
+    titleEl.dataset.maxDate = maxDate;
+    divContainer.appendChild(titleEl);
     divContainer.appendChild(tableEl);
-    downloadBtn.addEventListener("click", () => exportTableToXlsx(tableEl, title));
+    saveBtn.classList.remove("disabled");
 
     return divContainer;
 };

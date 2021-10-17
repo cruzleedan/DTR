@@ -35,6 +35,9 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="lib/mdl/material.min.css">
+        <script src="lib/mdl/material.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="css/index.css">
         <title>DTR</title>
     </head>
@@ -42,13 +45,32 @@
         <div class="app">
             <header class="main-header">
                 <h1 id="app-title">DTR</h1>
-                <nav>
-                    <div id="advance-settings-btn" class="icon-btn">
-                        <img src="./img/gear.png" alt="Settings" />
-                    </div>
-                </nav>
             </header>
             <div id="deviceready">
+                <div id="drop-area">
+                    <button class="upload-file-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                        Select Excel File
+                    </button>
+                    <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="upload-file-input"/>
+                </div>
+                <div class="container">
+                    <pre id="out"></pre>
+                </div>
+                <div class="container">
+                    <div id="htmlout"></div>
+                </div>
+            </div>
+            <div class="row-spacer"></div>
+            <footer>
+                <ul class="nav-list">
+                    <li id="advance-settings-btn">Settings</li>
+                    <li id="save-btn">Save</li>
+                </ul>
+            </footer>
+        </div>
+        <dialog class="mdl-dialog" data-id="advance-settings">
+            <h4 class="mdl-dialog__title">Advance Settings</h4>
+            <div class="mdl-dialog__content">
                 <div id="advance-settings" class="collapsed">
                     <div>Use Web Workers: (when available) <input type="checkbox" name="useworker" checked disabled></div>
                     <div>Use readAsBinaryString: (when available) <input type="checkbox" name="userabs" checked disabled></div>
@@ -63,24 +85,17 @@
                         </select>
                     </div>
                 </div>
-               
-                <div id="drop-area">
-                    <button class="upload-file-btn">Upload Excel File</button>
-                    <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="upload-file-input"/>
-                </div>
-                <div>
-                    <pre id="out"></pre>
-                </div>
-                <div>
-                    <div id="htmlout"></div>
-                </div>
             </div>
-        </div>
+            <div class="mdl-dialog__actions">
+              <button type="button" class="mdl-button close">Close</button>
+            </div>
+        </dialog>
         <div id="main-loading-mask" class="loading-mask">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
         </div>
+        <script src="lib/mdl/dialogPolyfill.js"></script>
         <script src="cordova.js"></script>
         <script src="js/lib/moment.min.js"></script>
         <script src="js/lib/xlsx.full.min.js"></script>

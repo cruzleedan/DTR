@@ -142,7 +142,7 @@ export const process_wb = (function() {
 			if(roa.length) result[sheetName] = roa;
 		});
         let { timesheet, minDate, maxDate } = transformData(result.Sheet1);
-        let table = createTable(timesheet, `${minDate}_${maxDate}`);
+        let table = createTable(timesheet, {minDate, maxDate});
         HTMLOUT.innerHTML = "";
         HTMLOUT.appendChild(table);
         return "";
